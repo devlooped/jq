@@ -1,0 +1,20 @@
+﻿﻿name: scheduled
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 1/15 * *"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v2
+
+      - name: 🚀 release
+        continue-on-error: true
+        env: 
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          TAG = gh release view --json tagName --repo jqlang/jq --jq .tagName
+          gh release create v${TAG#jq-}
