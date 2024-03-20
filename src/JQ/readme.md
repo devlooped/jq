@@ -1,2 +1,2 @@
-<!-- include ../readme.md#content -->
+<!-- include ../../readme.md#content -->
 <!-- exclude -->
