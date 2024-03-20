@@ -1,9 +1,9 @@
 ﻿using System;
-using CliWrap;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using CliWrap;
 using CliWrap.Buffered;
 
 namespace Devlooped;
@@ -20,9 +20,9 @@ public static class JQ
 
     static JQ()
     {
-        jqpath = 
-            OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.X64 ? 
-            System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-amd64") : 
+        jqpath =
+            OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
+            System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-amd64") :
             OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.Arm64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-arm64") :
             OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.X86 ?
