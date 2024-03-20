@@ -3,17 +3,19 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>Devlooped.JQ</PackageId>
+    <Description>A .NET-friendly distribution of the official JQ implementation</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CliWrap" Version="3.6.6" />
+    <PackageReference Include="NuGetizer" Version="1.2.1" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="DownloadLatest" BeforeTargets="Build" Condition="!Exists('tools/jq-linux-amd64')">
-    <Exec Command='gh release download --dir tools --clobber -p jq-linux-a*64 --repo jqlang/jq' />
-    <Exec Command='gh release download --dir tools --clobber -p jq-linux-i386 --repo jqlang/jq' />
-    <Exec Command='gh release download --dir tools --clobber -p jq-macos* --repo jqlang/jq' />
-    <Exec Command='gh release download --dir tools --clobber -p jq-windows-* --repo jqlang/jq' />
+    <Exec Command="gh release download --dir tools --clobber -p jq-linux-a*64 --repo jqlang/jq" />
+    <Exec Command="gh release download --dir tools --clobber -p jq-linux-i386 --repo jqlang/jq" />
+    <Exec Command="gh release download --dir tools --clobber -p jq-macos* --repo jqlang/jq" />
+    <Exec Command="gh release download --dir tools --clobber -p jq-windows-* --repo jqlang/jq" />
   </Target>
 
 </Project>
