@@ -23,11 +23,18 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: ⏬ download
+        run: |
+          gh release jq-${GITHUB_REF##*/v} download --dir src/JQ/tools --clobber -p jq-linux-a*64 --repo jqlang/jq
+          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-linux-i386 --repo jqlang/jq
+          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-macos* --repo jqlang/jq
+          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
+
       - name: 🙏 build
-        run: dotnet build -m:1 -p:version=${GITHUB_REF#refs/*/v} -bl:build.binlog
+        run: dotnet build -m:1 -p:version=${GITHUB_REF##*/v} -bl:build.binlog
 
       - name: 🧪 test
-        uses: ./.github/workflows/test
+        run: dotnet test --no-build 
 
       - name: 🐛 logs
         uses: actions/upload-artifact@v3
