@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -60,7 +61,7 @@ public static class JQ
 
         var jq = await Cli.Wrap(jqpath)
             .WithArguments(["-r", query])
-            .WithStandardInputPipe(PipeSource.FromString(json))
+            .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
             .WithValidation(CommandResultValidation.None)
             .ExecuteBufferedAsync();
 
