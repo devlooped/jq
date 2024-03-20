@@ -17,4 +17,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           TAG=$(gh release view --json tagName --repo jqlang/jq --jq .tagName)
-          gh release create v${TAG#jq-}
+          BODY=$(gh release view --repo jqlang/jq --json body --jq .body)
+          NAME=$(gh release view --repo jqlang/jq --json name --jq .name)
+          gh release create v${TAG#jq-} --notes $BODY --title $NAME
