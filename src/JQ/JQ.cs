@@ -38,6 +38,11 @@ public static class JQ
             throw new PlatformNotSupportedException("Unsupported platform or architecture.");
 
         Debug.Assert(File.Exists(jqpath));
+
+#if NET8_0_OR_GREATER
+        if (!OperatingSystem.IsWindows())
+            File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+#endif
     }
 
     /// <summary>

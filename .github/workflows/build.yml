@@ -52,7 +52,7 @@ jobs:
         run: dotnet build -bl:build.binlog
 
       - name: 🧪 test
-        run: dotnet test
+        run: dotnet test --no-build 
 
       - name: 🐛 logs
         uses: actions/upload-artifact@v3
