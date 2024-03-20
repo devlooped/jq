@@ -25,10 +25,11 @@ jobs:
 
       - name: ⏬ download
         run: |
-          gh release jq-${GITHUB_REF##*/v} download --dir src/JQ/tools --clobber -p jq-linux-a*64 --repo jqlang/jq
-          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-linux-i386 --repo jqlang/jq
-          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-macos* --repo jqlang/jq
-          gh release jq-${GITHUB_REF##*/v} --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
+          echo "Downloading jq release tag jq-${GITHUB_REF##*/v}"
+          gh release "jq-${GITHUB_REF##*/v}" download --dir src/JQ/tools --clobber -p jq-linux-a*64 --repo jqlang/jq
+          gh release "jq-${GITHUB_REF##*/v}" --dir src/JQ/tools --clobber -p jq-linux-i386 --repo jqlang/jq
+          gh release "jq-${GITHUB_REF##*/v}" --dir src/JQ/tools --clobber -p jq-macos* --repo jqlang/jq
+          gh release "jq-${GITHUB_REF##*/v}" --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:version=${GITHUB_REF##*/v} -bl:build.binlog
