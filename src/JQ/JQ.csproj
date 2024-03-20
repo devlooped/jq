@@ -4,15 +4,13 @@
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <PackageId>Devlooped.JQ</PackageId>
     <Description>A .NET-friendly distribution of the official JQ implementation</Description>
+    <PackNone>true</PackNone>
+    <DefaultExcludesInProjectFolder>$(DefaultExcludesInProjectFolder);**/.gitignore</DefaultExcludesInProjectFolder>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CliWrap" Version="3.6.6" />
     <PackageReference Include="NuGetizer" Version="1.2.1" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="tools/jq*.*" Pack="true" />
   </ItemGroup>
 
   <Target Name="DownloadLatest" BeforeTargets="Build" Condition="!Exists('tools/jq-linux-amd64')">
