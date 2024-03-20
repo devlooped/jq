@@ -1,0 +1,10 @@
+<Project>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)../tools/*.*" 
+             Link="lib/%(Filename)%(Extension)"
+             Visible="false"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

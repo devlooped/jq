@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>Devlooped.JQ</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CliWrap" Version="3.6.6" />
+  </ItemGroup>
+
+  <Target Name="DownloadLatest" BeforeTargets="Build" Condition="!Exists('tools/jq-linux-amd64')">
+    <Exec Command='gh release download --dir tools --clobber -p jq-linux-a*64 --repo jqlang/jq' />
+    <Exec Command='gh release download --dir tools --clobber -p jq-linux-i386 --repo jqlang/jq' />
+    <Exec Command='gh release download --dir tools --clobber -p jq-macos* --repo jqlang/jq' />
+    <Exec Command='gh release download --dir tools --clobber -p jq-windows-* --repo jqlang/jq' />
+  </Target>
+
+</Project>
