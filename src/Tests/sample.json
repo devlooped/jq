@@ -1,0 +1,646 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-cola-classic-cunnington-pet-225-lts-721460/p",
+        "name": "Gaseosa cola classic Cunnington pet 2.25 lts.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Cunnington"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/333914/7790639003437_E02.jpg?v=638216542095370000",
+        "description": "",
+        "mpn": "721460",
+        "sku": "146001",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1140,
+          "highPrice": 1140,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1140,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "146001",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/coca-cola-zero-500-ml-390898/p",
+        "name": "Coca cola zero 500 ml.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Coca Cola"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/417135/7790895067532_E01.jpg?v=638356502879370000",
+        "description": "",
+        "mpn": "390898",
+        "sku": "11724",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1150,
+          "highPrice": 1150,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1150,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "11724",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:48:26Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-carrefour-tonica-225-l/p",
+        "name": "Gaseosa Carrefour tónica 2.25 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Carrefour"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/386721/7798159715755_E01.jpg?v=638318705702700000",
+        "description": "&lt;img src=&quot;https://contenidos.carrefour.com.ar/carrefourproductos/contenidocrf/Cenefas_gaseosas.jpg&quot; alt=&quot;Imagen Samsung&quot; style=&quot;width:100%; display:block; margin: 20px auto 20px&quot;/&gt;",
+        "mpn": "572681",
+        "sku": "24919",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1190,
+          "highPrice": 1190,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1190,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "24919",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:49:34Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-cola-black-pepsi-twist-en-lata-354-cc-734363/p",
+        "name": "Gaseosa cola black Pepsi twist en lata 354 cc.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pepsi"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/426300/7791813000433_E02.jpg?v=638385203335870000",
+        "description": "",
+        "mpn": "734363",
+        "sku": "171834",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 995,
+          "highPrice": 995,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 995,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "171834",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:49:34Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-crush-sin-azucar-naranja-225-l/p",
+        "name": "Gaseosa Crush sin azúcar naranja 2.25 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Crush"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/302009/7790895006951_E01.jpg?v=638134604392330000",
+        "description": "El precio que más te gusta",
+        "mpn": "158471",
+        "sku": "7397",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1300,
+          "highPrice": 1300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "7397",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/coca-cola-zero-1-75-lts-636689/p",
+        "name": "Coca cola zero 1,75 lts.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Coca Cola"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/395286/7790895012259_E01.jpg?v=638326494257370000",
+        "description": "",
+        "mpn": "636689",
+        "sku": "73668",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 2300,
+          "highPrice": 2300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 2300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "73668",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-tonica-classic-cunnington-pet-225-lts-721462/p",
+        "name": "Gaseosa tónica classic Cunnington pet 2.25 lts.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Cunnington"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/333915/7790639003444_E02.jpg?v=638216542102100000",
+        "description": "",
+        "mpn": "721462",
+        "sku": "146007",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1265,
+          "highPrice": 1265,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1265,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "146007",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/coca-cola-sabor-liviano-1-75-lt-636690/p",
+        "name": "Coca cola sabor liviano 1.75 lt.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Coca Cola"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/395285/7790895012440_E01.jpg?v=638326494256900000",
+        "description": "",
+        "mpn": "636690",
+        "sku": "73654",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 2300,
+          "highPrice": 2300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 2300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "73654",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-crush-sin-azucar-pomelo-amarillo-225-l/p",
+        "name": "Gaseosa Crush sin azúcar pomelo amarillo 2.25 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Crush"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/275494/7790895007392_E01.jpg?v=638126761304700000",
+        "description": "El precio que más te gusta",
+        "mpn": "337554",
+        "sku": "7772",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1300,
+          "highPrice": 1300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "7772",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:49:50Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-schweppes-tonica-15-l/p",
+        "name": "Gaseosa Schweppes tónica 1.5 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Schweppes"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/332234/7790895006715_E01.jpg?v=638211437653630000",
+        "description": "Schweppes es una gaseosa para adultos con un sabor único, con carácter y sutiles burbujas y muy refrescante. Ideal para disfrutar sus distintos sabores en ocasiones sociales y de disfrute, para explorar y saborear las experiencias de la vida.",
+        "mpn": "155935",
+        "sku": "12757",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 2300,
+          "highPrice": 2300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 2300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "12757",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:49:50Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-coca-cola-sabor-original-175-l-630677/p",
+        "name": "Gaseosa Coca-Cola sabor original 1.75 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Coca Cola"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/332253/7790895007217_E01.jpg?v=638211437709500000",
+        "description": "",
+        "mpn": "630677",
+        "sku": "73254",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 2300,
+          "highPrice": 2300,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 2300,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "73254",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-light-carrefour-classic-pomelo-225-lt-722109/p",
+        "name": "Gaseosa light Carrefour classic pomelo 2.25 lt.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Carrefour"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/386666/7791720029978_E01.jpg?v=638318705440370000",
+        "description": "",
+        "mpn": "722109",
+        "sku": "149311",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1190,
+          "highPrice": 1190,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1190,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "149311",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/sprite-zero-lima-limon-1-75-lts-687362/p",
+        "name": "Sprite zero lima limón 1,75 lts.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Sprite"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/378987/7790895012327_E01.jpg?v=638313432865000000",
+        "description": "Sprite te invita a Mantenerte Fresco, y es “la” gaseosa sabor lima-limón. Sprite es refrescante, transparente con una personalidad auténtica, honesta e irreverente. Es ideal para esos momentos en los que quieres saciar tu sed y buscas una bebida con un sabor diferente, cuando estas solo, con amigos o familia, acompañar tus comidas y refrescar la rutina de todos los días. Y esta disponible sus versiones con y sin azúcar.",
+        "mpn": "687362",
+        "sku": "79409",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 2200,
+          "highPrice": 2200,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 2200,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "79409",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-lima-limon-classic-cunnington-pet-225-lts-721466/p",
+        "name": "Gaseosa lima limón classic Cunnington pet 2.25 lts.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Cunnington"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/333917/7790639003468_E02.jpg?v=638216542117570000",
+        "description": "",
+        "mpn": "721466",
+        "sku": "146009",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1265,
+          "highPrice": 1265,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1265,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "146009",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:38Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-7-up-light-lima-limon-500-cc/p",
+        "name": "Gaseosa 7 Up light lima limón 500 cc.",
+        "brand": {
+          "@type": "Brand",
+          "name": "7 Up"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/277283/7791813420583_E01.jpg?v=638128491237300000",
+        "description": "Gaseosa saborizada sabor Lima Limón sin azucar. 7UP free te da la libertad para vivir relajado. Sin azúcar ni calorías, permite cuidar tu cuerpo y vivir de una forma más simple.",
+        "mpn": "635201",
+        "sku": "37507",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 995,
+          "highPrice": 995,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 995,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "37507",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:47:53Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "@id": "https://www.carrefour.com.ar/gaseosa-carrefour-classic-regular-lima-limon-225-l/p",
+        "name": "Gaseosa Carrefour classic regular lima limon 2.25 l.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Carrefour"
+        },
+        "image": "https://carrefourar.vtexassets.com/arquivos/ids/386843/7791720025055_E01.jpg?v=638318706256070000",
+        "description": "&lt;img src=&quot;https://contenidos.carrefour.com.ar/carrefourproductos/contenidocrf/Cenefas_gaseosas.jpg&quot; alt=&quot;Imagen Samsung&quot; style=&quot;width:100%; display:block; margin: 20px auto 20px&quot;/&gt;",
+        "mpn": "681711",
+        "sku": "56451",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": 1190,
+          "highPrice": 1190,
+          "priceCurrency": "ARS",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": 1190,
+              "priceCurrency": "ARS",
+              "availability": "http://schema.org/InStock",
+              "sku": "56451",
+              "itemCondition": "http://schema.org/NewCondition",
+              "priceValidUntil": "2025-03-20T17:45:39Z",
+              "seller": {
+                "@type": "Organization",
+                "name": "CARREFOUR"
+              }
+            }
+          ],
+          "offerCount": 1
+        }
+      }
+    }
+  ]
+}
