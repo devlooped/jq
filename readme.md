@@ -6,6 +6,15 @@
 Packs the [jq](https://jqlang.github.io/jq/) binaries for easy execution 
 from dotnet applications.
 
+When JsonPath falls short, `jq` is the obvious next step in flexibility 
+and power for JSON manipulation.
+
+> jq is like sed for JSON data - you can use it to slice and filter and map 
+> and transform structured data with the same ease that sed, awk, grep and 
+> friends let you play with text.
+
+Learn more about `jq` at [https://jqlang.github.io/jq/](https://jqlang.github.io/jq/).
+
 ## Usage
 
 ```csharp
