@@ -50,6 +50,9 @@ public static class JQ
     /// </summary>
     public static async Task<string> ExecuteAsync(string json, string query)
     {
+        if (!File.Exists(jqpath))
+            throw new FileNotFoundException($"JQ executable not found.", jqpath);
+
         var jq = await Cli.Wrap(jqpath)
             .WithArguments(["-r", query])
             .WithStandardInputPipe(PipeSource.FromString(json))

@@ -32,7 +32,9 @@
 	weak
 [file ".github/release.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/release.yml
-    skip
+	sha = 1afd173fe8f81b510c597737b0d271218e81fa73
+	etag = 482dc2c892fc7ce0cb3a01eb5d9401bee50ddfb067d8cb85873555ce63cf5438
+	weak
 [file ".github/workflows/build.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/build.yml
 	skip
@@ -58,9 +60,7 @@
 	weak
 [file ".github/workflows/publish.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/publish.yml
-	sha = a67ae78d5ac972ac49b21e032816112f5d12f623
-	etag = 027f613c014e8ba0fac5c9f7433e5a30216a6479a87c33e542d7dbe5df401e1a
-	weak
+    skip
 [file ".github/workflows/sponsor.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/sponsor.yml
 	sha = 8990ebb36199046e0b8098bad9e46dcef739c56e
