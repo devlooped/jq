@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json;
 using Devlooped;
 
 namespace Tests;
@@ -28,4 +29,29 @@ public class JQTests
 
         Assert.NotEmpty(query);
     }
+
+    [Fact]
+    public async Task ReplacesLineEndingsOnQuery()
+    {
+        var json =
+            """
+            {
+              "name": "John",
+              "age": 30
+            }
+            """;
+
+        var data = await JQ.ExecuteAsync(json, @". | 
+{
+    name: .name
+}
+");
+
+        var person = JsonSerializer.Deserialize<Person>(data, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        Assert.NotNull(person);
+        Assert.Equal("John", person.Name);
+    }
+
+    record Person(string Name);
 }

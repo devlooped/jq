@@ -60,7 +60,7 @@ public static class JQ
             throw new FileNotFoundException($"JQ executable not found.", jqpath);
 
         var jq = await Cli.Wrap(jqpath)
-            .WithArguments(["-r", query])
+            .WithArguments(["-r", query.ReplaceLineEndings().Replace(Environment.NewLine, " ")])
             .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
             .WithValidation(CommandResultValidation.None)
             .ExecuteBufferedAsync();
