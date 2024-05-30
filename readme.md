@@ -4,7 +4,7 @@
 
 <!-- #content -->
 Packs the [jq](https://jqlang.github.io/jq/) binaries for easy execution 
-from dotnet applications on Linux (AMD64 and ARM64), macOS (AMD64 and ARM64) 
+from dotnet applications running on Linux (AMD64 and ARM64), macOS (AMD64 and ARM64) 
 and Windows (AMD64 and i386).
 
 When JsonPath falls short, `jq` is the obvious next step in flexibility 
