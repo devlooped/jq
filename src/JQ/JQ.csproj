@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="CliWrap" Version="3.6.6" />
-    <PackageReference Include="NuGetizer" Version="1.2.2" PrivateAssets="all" />
+    <PackageReference Include="NuGetizer" Version="1.2.3" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="DownloadLatest" BeforeTargets="Build" Condition="!Exists('tools/jq-linux-amd64')">
