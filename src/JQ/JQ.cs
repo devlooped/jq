@@ -63,7 +63,7 @@ public static class JQ
             .WithArguments(["-r", query.ReplaceLineEndings().Replace(Environment.NewLine, " ")])
             .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
             .WithValidation(CommandResultValidation.None)
-            .ExecuteBufferedAsync();
+            .ExecuteBufferedAsync(Encoding.UTF8);
 
         return jq.StandardOutput.Trim();
     }

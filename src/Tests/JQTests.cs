@@ -31,6 +31,22 @@ public class JQTests
     }
 
     [Fact]
+    public async Task SupportsUTF8Output()
+    {
+        var json =
+            """
+            {
+              "tier": "sponsor 💜"
+            }
+            """;
+
+        var query = await JQ.ExecuteAsync(json, ".tier");
+
+        Assert.NotEmpty(query);
+        Assert.Equal("sponsor 💜", query);
+    }
+
+    [Fact]
     public async Task ReplacesLineEndingsOnQuery()
     {
         var json =
