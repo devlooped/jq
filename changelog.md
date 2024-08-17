@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.7.1.2](https://github.com/devlooped/jq/tree/v1.7.1.2) (2024-08-17)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1...v1.7.1.2)
+
+:bug: Fixed bugs:
+
+- If JSON input contains UTF8 characters, query fails as no encoding was specified [\#4](https://github.com/devlooped/jq/issues/4)
+- Add UTF8 support by default in query output [\#19](https://github.com/devlooped/jq/pull/19) (@kzu)
+- Allow UTF8 input in JSON string by default [\#5](https://github.com/devlooped/jq/pull/5) (@kzu)
+
 ## [v1.7.1](https://github.com/devlooped/jq/tree/v1.7.1) (2024-03-20)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7...v1.7.1)
