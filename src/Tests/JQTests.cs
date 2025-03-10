@@ -69,5 +69,29 @@ public class JQTests
         Assert.Equal("John", person.Name);
     }
 
+    [Fact]
+    public async Task SupportsCommentsInQuery()
+    {
+        var json =
+            """
+            {
+              "name": "John",
+              "age": 30
+            }
+            """;
+
+        var data = await JQ.ExecuteAsync(json, @". | 
+{
+    # this should return the name
+    name: .name
+}
+");
+
+        var person = JsonSerializer.Deserialize<Person>(data, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        Assert.NotNull(person);
+        Assert.Equal("John", person.Name);
+    }
+
     record Person(string Name);
 }
