@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.7.1.3](https://github.com/devlooped/jq/tree/v1.7.1.3) (2025-03-10)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.2...v1.7.1.3)
+
+:bug: Fixed bugs:
+
+- If query contains \# comments, querying fails [\#33](https://github.com/devlooped/jq/issues/33)
+- Add support for queries with comments [\#34](https://github.com/devlooped/jq/pull/34) (@kzu)
+
 ## [v1.7.1.2](https://github.com/devlooped/jq/tree/v1.7.1.2) (2024-08-17)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1...v1.7.1.2)
