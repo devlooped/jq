@@ -1,6 +1,9 @@
 # ./jq for .net
 
-[![Version](https://img.shields.io/nuget/v/Devlooped.JQ.svg?color=royalblue)](https://www.nuget.org/packages/Devlooped.JQ) [![Downloads](https://img.shields.io/nuget/dt/Devlooped.JQ.svg?color=green)](https://www.nuget.org/packages/Devlooped.JQ) [![License](https://img.shields.io/github/license/devlooped/jq.svg?color=blue)](https://github.com/devlooped/jq/blob/main/license.txt) [![Build](https://github.com/devlooped/jq/actions/workflows/build.yml/badge.svg)](https://github.com/devlooped/jq/actions/workflows/build.yml)
+[![Version](https://img.shields.io/nuget/v/Devlooped.JQ.svg?color=royalblue)](https://www.nuget.org/packages/Devlooped.JQ) 
+[![Downloads](https://img.shields.io/nuget/dt/Devlooped.JQ.svg?color=green)](https://www.nuget.org/packages/Devlooped.JQ) 
+[![License](https://img.shields.io/github/license/devlooped/jq.svg?color=blue)](https://github.com/devlooped/jq/blob/main/license.txt) 
+[![Build](https://img.shields.io/github/actions/workflow/status/devlooped/jq/build.yml?branch=main)](https://github.com/devlooped/jq/actions)
 
 <!-- #content -->
 Packs the [jq](https://jqlang.github.io/jq/) binaries for easy execution 
