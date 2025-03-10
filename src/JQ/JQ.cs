@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.Arm;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CliWrap;
@@ -59,12 +61,33 @@ public static class JQ
         if (!File.Exists(jqpath))
             throw new FileNotFoundException($"JQ executable not found.", jqpath);
 
-        var jq = await Cli.Wrap(jqpath)
-            .WithArguments(["-r", query.ReplaceLineEndings().Replace(Environment.NewLine, " ")])
-            .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
-            .WithValidation(CommandResultValidation.None)
-            .ExecuteBufferedAsync(Encoding.UTF8);
+        var normalized = query.ReplaceLineEndings().Trim();
+        if (normalized.Contains(Environment.NewLine))
+        {
+            // get sha256 of the query, make a temp file with a windows-friendly filename derived from it
+            // and persist the query. use the temp file as the query file input instead of a simple arg
+            var hash = BitConverter.ToString(SHA256.HashData(Encoding.UTF8.GetBytes(normalized)));
+            var queryFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{hash}.jq");
+            if (!File.Exists(queryFile))
+                await File.WriteAllTextAsync(queryFile, normalized);
 
-        return jq.StandardOutput.Trim();
+            var jq = await Cli.Wrap(jqpath)
+                .WithArguments(["-r", "-f", queryFile])
+                .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
+                .WithValidation(CommandResultValidation.None)
+                .ExecuteBufferedAsync(Encoding.UTF8);
+
+            return jq.StandardOutput.Trim();
+        }
+        else
+        {
+            var jq = await Cli.Wrap(jqpath)
+                .WithArguments(["-r", query])
+                .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
+                .WithValidation(CommandResultValidation.None)
+                .ExecuteBufferedAsync(Encoding.UTF8);
+
+            return jq.StandardOutput.Trim();
+        }
     }
 }
