@@ -43,8 +43,22 @@ public static class JQ
         Debug.Assert(File.Exists(jqpath));
 
 #if NET8_0_OR_GREATER
-        if (!OperatingSystem.IsWindows())
-            File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+        if (!OperatingSystem.IsWindows() && !File.GetUnixFileMode(jqpath).HasFlag(UnixFileMode.UserExecute))
+        {
+            try
+            {
+                File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // In hosted environments, we might not be able to set the file mode.
+                // So try using the temp directory instead by first copying the file there.
+                var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "jq");
+                File.Copy(jqpath, tempPath, overwrite: true);
+                jqpath = tempPath;
+                File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+            }
+        }
 #endif
     }
 
