@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.7.1.5](https://github.com/devlooped/jq/tree/v1.7.1.5) (2025-04-02)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.4...v1.7.1.5)
+
+:bug: Fixed bugs:
+
+- Lock before writing to potentially shared file [\#39](https://github.com/devlooped/jq/pull/39) (@kzu)
+
 ## [v1.7.1.4](https://github.com/devlooped/jq/tree/v1.7.1.4) (2025-04-02)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.3...v1.7.1.4)
