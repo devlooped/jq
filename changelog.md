@@ -1,5 +1,21 @@
 # Changelog
 
+## [v1.7.1.4](https://github.com/devlooped/jq/tree/v1.7.1.4) (2025-04-02)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.3...v1.7.1.4)
+
+:sparkles: Implemented enhancements:
+
+- JQ.Path returns the wrong value in LinqPad [\#17](https://github.com/devlooped/jq/issues/17)
+
+:bug: Fixed bugs:
+
+- Fix issue on hosted environment without chmod permissions [\#37](https://github.com/devlooped/jq/pull/37) (@kzu)
+
+:twisted_rightwards_arrows: Merged:
+
+- Ignore JQ binaries under tools [\#38](https://github.com/devlooped/jq/pull/38) (@kzu)
+
 ## [v1.7.1.3](https://github.com/devlooped/jq/tree/v1.7.1.3) (2025-03-10)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.2...v1.7.1.3)
