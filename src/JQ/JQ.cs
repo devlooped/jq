@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +18,7 @@ namespace Devlooped;
 /// </remarks>
 public static class JQ
 {
+    static readonly object syncLock = new();
     static readonly string jqpath;
 
     static JQ()
@@ -83,7 +83,13 @@ public static class JQ
             var hash = BitConverter.ToString(SHA256.HashData(Encoding.UTF8.GetBytes(normalized)));
             var queryFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{hash}.jq");
             if (!File.Exists(queryFile))
-                await File.WriteAllTextAsync(queryFile, normalized);
+            {
+                lock (syncLock)
+                {
+                    if (!File.Exists(queryFile))
+                        File.WriteAllText(queryFile, normalized);
+                }
+            }
 
             var jq = await Cli.Wrap(jqpath)
                 .WithArguments(["-r", "-f", queryFile])
