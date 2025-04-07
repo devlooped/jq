@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
     <PackageId>Devlooped.JQ</PackageId>
     <Description>A .NET-friendly distribution of the official JQ implementation</Description>
     <PackNone>true</PackNone>
     <DefaultExcludesInProjectFolder>$(DefaultExcludesInProjectFolder);**/.gitignore</DefaultExcludesInProjectFolder>
+    <PackCompile>true</PackCompile>
+    <PackBuildOutput>false</PackBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>

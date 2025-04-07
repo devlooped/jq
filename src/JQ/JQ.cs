@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -16,7 +17,7 @@ namespace Devlooped;
 /// <remarks>
 /// Learn more about JQ at https://jqlang.github.io/jq/.
 /// </remarks>
-public static class JQ
+public static partial class JQ
 {
     static readonly object syncLock = new();
     static readonly string jqpath;
@@ -24,19 +25,19 @@ public static class JQ
     static JQ()
     {
         jqpath =
-            OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-amd64") :
-            OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.Arm64 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && RuntimeInformation.ProcessArchitecture == Architecture.Arm64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-arm64") :
-            OperatingSystem.IsLinux() && RuntimeInformation.ProcessArchitecture == Architecture.X86 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && RuntimeInformation.ProcessArchitecture == Architecture.X86 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-linux-i386") :
-            OperatingSystem.IsWindows() && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-windows-amd64.exe") :
-            OperatingSystem.IsWindows() && RuntimeInformation.ProcessArchitecture == Architecture.X86 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && RuntimeInformation.ProcessArchitecture == Architecture.X86 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-windows-i386.exe") :
-            OperatingSystem.IsMacOS() && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && RuntimeInformation.ProcessArchitecture == Architecture.X64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-macos-amd64") :
-            OperatingSystem.IsMacOS() && RuntimeInformation.ProcessArchitecture == Architecture.Arm64 ?
+            RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && RuntimeInformation.ProcessArchitecture == Architecture.Arm64 ?
             System.IO.Path.Combine(AppContext.BaseDirectory, "lib", "jq-macos-arm64") :
             throw new PlatformNotSupportedException("Unsupported platform or architecture.");
 
@@ -80,7 +81,7 @@ public static class JQ
         {
             // get sha256 of the query, make a temp file with a windows-friendly filename derived from it
             // and persist the query. use the temp file as the query file input instead of a simple arg
-            var hash = BitConverter.ToString(SHA256.HashData(Encoding.UTF8.GetBytes(normalized)));
+            var hash = HashString(normalized);
             var queryFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{hash}.jq");
             if (!File.Exists(queryFile))
             {
@@ -110,4 +111,23 @@ public static class JQ
             return jq.StandardOutput.Trim();
         }
     }
+
+    static string HashString(string input)
+    {
+        using var sha256 = SHA256.Create();
+        var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+    }
+
+    static string ReplaceLineEndings(this string text)
+#if NET8_0_OR_GREATER
+        => LineEndingsExpr().Replace(text, Environment.NewLine);
+#else
+        => Regex.Replace(text, @"\r\n|\n|\r", Environment.NewLine);
+#endif
+
+#if NET8_0_OR_GREATER
+    [GeneratedRegex(@"\r\n|\n|\r")]
+    private static partial Regex LineEndingsExpr();
+#endif
 }
