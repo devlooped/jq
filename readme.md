@@ -32,8 +32,105 @@ var name = await JQ.ExecuteAsync(
     ".name"));
 ```
 
-The `JQ.Path` provides the full path to the jq binary that's appropriate 
-for the current OS and architecture.
+The `JQ.Path` static property provides the full path to the jq binary that's appropriate 
+for the current OS and architecture so you can execute it directly if needed.
+
+## Examples
+
+The following is a real-world scenario where [WhatsApp Cloud API messages](https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples) 
+are converted into clean polymorphic JSON for nice OO deserialization via System.Text.Json.
+
+Rather than navigating deep into the JSON structure, we can use `jq` to transform the payload 
+into what we expect for deserialization of a text message:
+
+```json
+{
+  "id": "wamid.HBgNMTIwM==",
+  "timestamp": 1678902345,
+  "to": {
+    "id": "792401583610927",
+    "number": "12025550123"
+  },
+  "from": {
+    "name": "Mlx",
+    "number": "12029874563"
+  },
+  "content": {
+    "$type": "text",
+    "text": "😊"
+  }
+}
+```
+
+The original JSON looks like the following: 
+
+```json
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "813920475102346",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "12025550123",
+              "phone_number_id": "792401583610927"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Mlx" },
+                "wa_id": "12029874563"
+              }
+            ],
+            "messages": [
+              {
+                "from": "12029874563",
+                "id": "wamid.HBgNMTIwM==",
+                "timestamp": "1678902345",
+                "text": { "body": "\ud83d\ude0a" },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The following JQ query turns the latter info the former:
+
+```jq
+.entry[].changes[].value.metadata as $phone |
+.entry[].changes[].value.contacts[] as $user |
+.entry[].changes[].value.messages[] | 
+{
+    id: .id,
+    timestamp: .timestamp | tonumber,
+    to: {
+        id: $phone.phone_number_id,
+        number: $phone.display_phone_number
+    },
+    from: {
+        name: $user.profile.name,
+        number: $user.wa_id
+    },
+    content:  {
+        "$type": "text",
+        text: .text.body
+    }
+}
+```
+
+This allows you to focus your C# code into the actual object model you want 
+to work with, rather than the one imposed by the JSON format of external APIs.
+
+See this code in action at [Devlooped.WhatsApp](https://github.com/devlooped/WhatsApp/blob/main/src/WhatsApp/Message.cs).
+
 
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
