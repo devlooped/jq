@@ -5,6 +5,9 @@
              Link="lib/%(Filename)%(Extension)"
              Visible="false"
              CopyToOutputDirectory="PreserveNewest" />
+
+    <!-- Hide the source JQ.cs from explorer by default -->  
+    <Compile Update="@(Compile -> WithMetadataValue('NuGetPackageId', 'Devlooped.JQ'))" Visible="false" />
   </ItemGroup>
 
 </Project>
