@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.7.1.6](https://github.com/devlooped/jq/tree/v1.7.1.6) (2025-04-07)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.5...v1.7.1.6)
+
+:sparkles: Implemented enhancements:
+
+- Switch to source content, add NS2.0 support [\#40](https://github.com/devlooped/jq/pull/40) (@kzu)
+
 ## [v1.7.1.5](https://github.com/devlooped/jq/tree/v1.7.1.5) (2025-04-02)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.4...v1.7.1.5)
