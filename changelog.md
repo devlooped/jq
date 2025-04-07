@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.7.1.7](https://github.com/devlooped/jq/tree/v1.7.1.7) (2025-04-07)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.6...v1.7.1.7)
+
+:sparkles: Implemented enhancements:
+
+- Hide JQ.cs from explorer by default [\#41](https://github.com/devlooped/jq/pull/41) (@kzu)
+
 ## [v1.7.1.6](https://github.com/devlooped/jq/tree/v1.7.1.6) (2025-04-07)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.5...v1.7.1.6)
