@@ -17,7 +17,7 @@ namespace Devlooped;
 /// <remarks>
 /// Learn more about JQ at https://jqlang.github.io/jq/.
 /// </remarks>
-public static partial class JQ
+static partial class JQ
 {
     static readonly object syncLock = new();
     static readonly string jqpath;
