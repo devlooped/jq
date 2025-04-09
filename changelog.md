@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.7.1.8](https://github.com/devlooped/jq/tree/v1.7.1.8) (2025-04-09)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.7...v1.7.1.8)
+
+:sparkles: Implemented enhancements:
+
+- Don't force the type to be public [\#42](https://github.com/devlooped/jq/pull/42) (@kzu)
+
 ## [v1.7.1.7](https://github.com/devlooped/jq/tree/v1.7.1.7) (2025-04-07)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.6...v1.7.1.7)
