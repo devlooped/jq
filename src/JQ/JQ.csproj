@@ -22,4 +22,8 @@
     <Exec Command="gh release download --dir tools --clobber -p jq-windows-* --repo jqlang/jq" />
   </Target>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Tests"/>
+  </ItemGroup>
+
 </Project>
