@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -44,21 +45,31 @@ static partial class JQ
         Debug.Assert(File.Exists(jqpath));
 
 #if NET8_0_OR_GREATER
-        if (!OperatingSystem.IsWindows() && !File.GetUnixFileMode(jqpath).HasFlag(UnixFileMode.UserExecute))
+        if (!OperatingSystem.IsWindows())
         {
+#pragma warning disable CA1416 // Validate platform compatibility
             try
             {
-                File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+                Process.Start(jqpath, "--version").WaitForExit();
             }
-            catch (UnauthorizedAccessException)
+            catch (Win32Exception)
             {
-                // In hosted environments, we might not be able to set the file mode.
-                // So try using the temp directory instead by first copying the file there.
-                var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "jq");
-                File.Copy(jqpath, tempPath, overwrite: true);
-                jqpath = tempPath;
-                File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+                try
+                {
+                    File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+                    Process.Start(jqpath, "--version").WaitForExit();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    // In hosted environments, we might not be able to set the file mode.
+                    // So try using the temp directory instead by first copying the file there.
+                    var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "jq");
+                    File.Copy(jqpath, tempPath, overwrite: true);
+                    jqpath = tempPath;
+                    File.SetUnixFileMode(jqpath, UnixFileMode.UserExecute);
+                }
             }
+#pragma warning restore CA1416 // Validate platform compatibility
         }
 #endif
     }
