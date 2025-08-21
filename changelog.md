@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.8.1](https://github.com/devlooped/jq/tree/v1.8.1) (2025-08-21)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.8.1-beta...v1.8.1)
+
 ## [v1.8.1-beta](https://github.com/devlooped/jq/tree/v1.8.1-beta) (2025-08-21)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.8...v1.8.1-beta)
