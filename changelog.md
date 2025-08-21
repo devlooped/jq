@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.8.1-beta](https://github.com/devlooped/jq/tree/v1.8.1-beta) (2025-08-21)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.8...v1.8.1-beta)
+
+:bug: Fixed bugs:
+
+- Fix chmod +x on Azure Flex plan [\#73](https://github.com/devlooped/jq/pull/73) (@kzu)
+
 ## [v1.7.1.8](https://github.com/devlooped/jq/tree/v1.7.1.8) (2025-04-09)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.7.1.7...v1.7.1.8)
