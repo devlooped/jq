@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -84,8 +86,27 @@ static partial class JQ
     /// </summary>
     public static async Task<string> ExecuteAsync(string json, string query)
     {
+        JqResult result = await ExecuteAsync(json, query, null, null);
+        return result.StandardOutput;
+
+    }
+
+    public static async Task<JqResult> ExecuteAsync(string json, string query, string? jqCommandLineArgs = null, Dictionary<string, string>? jsonArgs = null)
+    {
         if (!File.Exists(jqpath))
             throw new FileNotFoundException($"JQ executable not found.", jqpath);
+
+        List<string> args = new List<string>() { "-r" };
+        
+        if(!string.IsNullOrEmpty(jqCommandLineArgs))
+        {
+            args.AddRange(jqCommandLineArgs.Split(' '));
+        }
+
+        if(jsonArgs != null)
+        {
+            args.AddRange(jsonArgs.SelectMany(z => new string[] { "--argjson", z.Key, z.Value }));
+        }
 
         var normalized = query.ReplaceLineEndings().Trim();
         if (normalized.Contains(Environment.NewLine))
@@ -103,23 +124,36 @@ static partial class JQ
                 }
             }
 
+            args.Add("-f");
+            args.Add(queryFile);
             var jq = await Cli.Wrap(jqpath)
-                .WithArguments(["-r", "-f", queryFile])
+                .WithArguments(args)
                 .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
                 .WithValidation(CommandResultValidation.None)
                 .ExecuteBufferedAsync(Encoding.UTF8);
 
-            return jq.StandardOutput.Trim();
+            return new JqResult()
+            {
+                ExitCode = jq.ExitCode,
+                StandardOutput = jq.StandardOutput.Trim(),
+                StandardError = jq.StandardError.Trim()
+            };
         }
         else
         {
+            args.Add(query);
             var jq = await Cli.Wrap(jqpath)
-                .WithArguments(["-r", query])
+                .WithArguments(args)
                 .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
                 .WithValidation(CommandResultValidation.None)
                 .ExecuteBufferedAsync(Encoding.UTF8);
 
-            return jq.StandardOutput.Trim();
+            return new JqResult()
+            {
+                ExitCode = jq.ExitCode,
+                StandardOutput = jq.StandardOutput.Trim(),
+                StandardError = jq.StandardError.Trim()
+            };
         }
     }
 

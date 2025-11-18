@@ -17,17 +17,23 @@ public class JQTests
             }
             """;
 
-        Assert.Equal("John", await JQ.ExecuteAsync(json, ".name"));
-        Assert.Equal("30", await JQ.ExecuteAsync(json, ".age"));
+        JqResult result = await JQ.ExecuteAsync(json, ".name", "");
+        Assert.Equal(0, result.ExitCode);
+        Assert.Equal("John", result.StandardOutput);
+
+        result = await JQ.ExecuteAsync(json, ".age", "");
+        Assert.Equal(0, result.ExitCode);
+        Assert.Equal("30", result.StandardOutput);
     }
 
     [Fact]
     public async Task SupportsUTF8()
     {
         var json = await File.ReadAllTextAsync("sample.json", Encoding.UTF8);
-        var query = await JQ.ExecuteAsync(json, "[.itemListElement[].item]");
+        JqResult result = await JQ.ExecuteAsync(json, "[.itemListElement[].item]", "");
 
-        Assert.NotEmpty(query);
+        Assert.Equal(0, result.ExitCode);
+        Assert.NotEmpty(result.StandardOutput);
     }
 
     [Fact]
@@ -91,6 +97,26 @@ public class JQTests
 
         Assert.NotNull(person);
         Assert.Equal("John", person.Name);
+    }
+
+    [Fact]
+    public async Task Errors()
+    {
+        string json = "{}";
+        JqResult result = await JQ.ExecuteAsync(json, "bummer", null, null);
+
+        Assert.NotEqual(0, result.ExitCode);
+        Assert.Contains("bummer", result.StandardError);
+    }
+
+    [Fact]
+    public async Task SupportsJsonArgs()
+    {
+        string json = "{}";
+        JqResult result = await JQ.ExecuteAsync(json, ". + {\"a\": $a}", "", new Dictionary<string, string>() { { "a", "\"argument_value\"" } });
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Contains("argument_value", result.StandardOutput);
     }
 
     record Person(string Name);

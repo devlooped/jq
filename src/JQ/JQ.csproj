@@ -8,6 +8,11 @@
     <DefaultExcludesInProjectFolder>$(DefaultExcludesInProjectFolder);**/.gitignore</DefaultExcludesInProjectFolder>
     <PackCompile>true</PackCompile>
     <PackBuildOutput>false</PackBuildOutput>
+    <VersionPrefix>1.9.0</VersionPrefix>
+    <Authors>devlooped</Authors>
+    <Product>devlooped /jq</Product>
+    <Description>Packs the jq binaries for easy execution from dotnet.</Description>
+    <PackageProjectUrl>https://github.com/devlooped/jq</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +21,12 @@
   </ItemGroup>
 
   <Target Name="DownloadLatest" BeforeTargets="Build" Condition="!Exists('tools/jq-linux-amd64')">
+    <!--
+    gh is GitHub command line tools.
+    Download from: https://cli.github.com/
+    Then run
+    > gh auth login
+    -->
     <Exec Command="gh release download --dir tools --clobber -p jq-linux-a*64 --repo jqlang/jq" />
     <Exec Command="gh release download --dir tools --clobber -p jq-linux-i386 --repo jqlang/jq" />
     <Exec Command="gh release download --dir tools --clobber -p jq-macos* --repo jqlang/jq" />
