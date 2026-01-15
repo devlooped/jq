@@ -249,6 +249,10 @@ static partial class JQ
         if (!File.Exists(jqpath))
             throw new FileNotFoundException($"JQ executable not found.", jqpath);
 
+        // Validate that either JSON input is provided or NullInput is true
+        if (parameters.Json == null && parameters.NullInput != true)
+            throw new ArgumentException("Either Json must be provided or NullInput must be true.", nameof(parameters));
+
         var normalized = parameters.Query.ReplaceLineEndings().Trim();
         var args = new List<string>();
         string? queryFile = null;
@@ -320,6 +324,10 @@ static partial class JQ
         {
             foreach (var file in parameters.SlurpFiles)
             {
+                // Validate file exists to prevent path traversal and access to sensitive files
+                if (!File.Exists(file.Value))
+                    throw new FileNotFoundException($"Slurp file not found: {file.Value}", file.Value);
+
                 args.Add("--slurpfile");
                 args.Add(file.Key);
                 args.Add(file.Value);
@@ -331,6 +339,10 @@ static partial class JQ
         {
             foreach (var file in parameters.RawFiles)
             {
+                // Validate file exists to prevent path traversal and access to sensitive files
+                if (!File.Exists(file.Value))
+                    throw new FileNotFoundException($"Raw file not found: {file.Value}", file.Value);
+
                 args.Add("--rawfile");
                 args.Add(file.Key);
                 args.Add(file.Value);
