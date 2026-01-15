@@ -111,12 +111,12 @@ public class JqParams
     public bool? SortKeys { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether to output newline after each JSON object (-j, --join-output).
+    /// Gets or sets a value indicating whether to not output newlines after each JSON object (-j, --join-output).
     /// </summary>
     public bool? JoinOutput { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether to parse input as tab-separated values (--tab).
+    /// Gets or sets a value indicating whether to use tabs for indentation (--tab).
     /// </summary>
     public bool? Tab { get; set; }
 
