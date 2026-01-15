@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,6 +13,154 @@ using CliWrap;
 using CliWrap.Buffered;
 
 namespace Devlooped;
+
+/// <summary>
+/// Represents the result of a JQ query execution.
+/// </summary>
+public class JqResult
+{
+    /// <summary>
+    /// Gets the exit code from the JQ process.
+    /// </summary>
+    public int ExitCode { get; }
+
+    /// <summary>
+    /// Gets the standard output from the JQ process.
+    /// </summary>
+    public string StandardOutput { get; }
+
+    /// <summary>
+    /// Gets the standard error from the JQ process.
+    /// </summary>
+    public string StandardError { get; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JqResult"/> class.
+    /// </summary>
+    public JqResult(int exitCode, string standardOutput, string standardError)
+    {
+        ExitCode = exitCode;
+        StandardOutput = standardOutput;
+        StandardError = standardError;
+    }
+
+    /// <summary>
+    /// Implicitly converts a <see cref="JqResult"/> to a <see cref="string"/> by returning the <see cref="StandardOutput"/>.
+    /// </summary>
+    public static implicit operator string(JqResult result) => result?.StandardOutput ?? string.Empty;
+}
+
+/// <summary>
+/// Parameters for executing a JQ query.
+/// </summary>
+public class JqParams
+{
+    /// <summary>
+    /// Gets or sets the JSON input to process.
+    /// </summary>
+    public string? Json { get; set; }
+
+    /// <summary>
+    /// Gets or sets the JQ query/filter to execute.
+    /// </summary>
+    public string Query { get; set; } = ".";
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to output raw strings, not JSON texts (-r, --raw-output).
+    /// </summary>
+    public bool RawOutput { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to produce compact instead of pretty-printed output (-c, --compact-output).
+    /// </summary>
+    public bool? CompactOutput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to disable colored output (-M, --monochrome-output).
+    /// </summary>
+    public bool? MonochromeOutput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to enable colored output (-C, --color-output).
+    /// </summary>
+    public bool? ColorOutput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to read the entire input stream into a large array and run the filter just once (-s, --slurp).
+    /// </summary>
+    public bool? Slurp { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to not read any input; filter is run with null input (-n, --null-input).
+    /// </summary>
+    public bool? NullInput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to set the exit status code based on the output of the program (-e, --exit-status).
+    /// </summary>
+    public bool? ExitStatus { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to output valid JSON strings with ASCII characters escaped (-a, --ascii-output).
+    /// </summary>
+    public bool? AsciiOutput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to sort object keys in output (-S, --sort-keys).
+    /// </summary>
+    public bool? SortKeys { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to output newline after each JSON object (-j, --join-output).
+    /// </summary>
+    public bool? JoinOutput { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to parse input as tab-separated values (--tab).
+    /// </summary>
+    public bool? Tab { get; set; }
+
+    /// <summary>
+    /// Gets or sets the indent level for pretty-printing (--indent n).
+    /// </summary>
+    public int? Indent { get; set; }
+
+    /// <summary>
+    /// Gets or sets string variables to pass to the JQ program (--arg name value).
+    /// </summary>
+    public Dictionary<string, string>? Args { get; set; }
+
+    /// <summary>
+    /// Gets or sets JSON variables to pass to the JQ program (--argjson name value).
+    /// </summary>
+    public Dictionary<string, string>? ArgsJson { get; set; }
+
+    /// <summary>
+    /// Gets or sets files to read as JSON arrays and bind to variables (--slurpfile name filename).
+    /// </summary>
+    public Dictionary<string, string>? SlurpFiles { get; set; }
+
+    /// <summary>
+    /// Gets or sets files to read as raw strings and bind to variables (--rawfile name filename).
+    /// </summary>
+    public Dictionary<string, string>? RawFiles { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JqParams"/> class.
+    /// </summary>
+    public JqParams()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JqParams"/> class with JSON and query.
+    /// </summary>
+    public JqParams(string json, string query)
+    {
+        Json = json;
+        Query = query;
+    }
+}
 
 /// <summary>
 /// Executes JQ queries on JSON input.
@@ -84,16 +234,116 @@ static partial class JQ
     /// </summary>
     public static async Task<string> ExecuteAsync(string json, string query)
     {
+        var result = await ExecuteAsync(new JqParams(json, query));
+        return result.StandardOutput;
+    }
+
+    /// <summary>
+    /// Execute the query with the specified parameters and return the result.
+    /// </summary>
+    public static async Task<JqResult> ExecuteAsync(JqParams parameters)
+    {
+        if (parameters == null)
+            throw new ArgumentNullException(nameof(parameters));
+
         if (!File.Exists(jqpath))
             throw new FileNotFoundException($"JQ executable not found.", jqpath);
 
-        var normalized = query.ReplaceLineEndings().Trim();
+        var normalized = parameters.Query.ReplaceLineEndings().Trim();
+        var args = new List<string>();
+        string? queryFile = null;
+
+        // Build arguments based on parameters
+        if (parameters.RawOutput)
+            args.Add("-r");
+
+        if (parameters.CompactOutput == true)
+            args.Add("-c");
+
+        if (parameters.MonochromeOutput == true)
+            args.Add("-M");
+
+        if (parameters.ColorOutput == true)
+            args.Add("-C");
+
+        if (parameters.Slurp == true)
+            args.Add("-s");
+
+        if (parameters.NullInput == true)
+            args.Add("-n");
+
+        if (parameters.ExitStatus == true)
+            args.Add("-e");
+
+        if (parameters.AsciiOutput == true)
+            args.Add("-a");
+
+        if (parameters.SortKeys == true)
+            args.Add("-S");
+
+        if (parameters.JoinOutput == true)
+            args.Add("-j");
+
+        if (parameters.Tab == true)
+            args.Add("--tab");
+
+        if (parameters.Indent.HasValue)
+        {
+            args.Add("--indent");
+            args.Add(parameters.Indent.Value.ToString());
+        }
+
+        // Add --arg parameters
+        if (parameters.Args != null)
+        {
+            foreach (var arg in parameters.Args)
+            {
+                args.Add("--arg");
+                args.Add(arg.Key);
+                args.Add(arg.Value);
+            }
+        }
+
+        // Add --argjson parameters
+        if (parameters.ArgsJson != null)
+        {
+            foreach (var arg in parameters.ArgsJson)
+            {
+                args.Add("--argjson");
+                args.Add(arg.Key);
+                args.Add(arg.Value);
+            }
+        }
+
+        // Add --slurpfile parameters
+        if (parameters.SlurpFiles != null)
+        {
+            foreach (var file in parameters.SlurpFiles)
+            {
+                args.Add("--slurpfile");
+                args.Add(file.Key);
+                args.Add(file.Value);
+            }
+        }
+
+        // Add --rawfile parameters
+        if (parameters.RawFiles != null)
+        {
+            foreach (var file in parameters.RawFiles)
+            {
+                args.Add("--rawfile");
+                args.Add(file.Key);
+                args.Add(file.Value);
+            }
+        }
+
+        // Handle multi-line queries
         if (normalized.Contains(Environment.NewLine))
         {
             // get sha256 of the query, make a temp file with a windows-friendly filename derived from it
             // and persist the query. use the temp file as the query file input instead of a simple arg
             var hash = HashString(normalized);
-            var queryFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{hash}.jq");
+            queryFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{hash}.jq");
             if (!File.Exists(queryFile))
             {
                 lock (syncLock)
@@ -103,24 +353,25 @@ static partial class JQ
                 }
             }
 
-            var jq = await Cli.Wrap(jqpath)
-                .WithArguments(["-r", "-f", queryFile])
-                .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
-                .WithValidation(CommandResultValidation.None)
-                .ExecuteBufferedAsync(Encoding.UTF8);
-
-            return jq.StandardOutput.Trim();
+            args.Add("-f");
+            args.Add(queryFile);
         }
         else
         {
-            var jq = await Cli.Wrap(jqpath)
-                .WithArguments(["-r", query])
-                .WithStandardInputPipe(PipeSource.FromString(json, Encoding.UTF8))
-                .WithValidation(CommandResultValidation.None)
-                .ExecuteBufferedAsync(Encoding.UTF8);
-
-            return jq.StandardOutput.Trim();
+            args.Add(normalized);
         }
+
+        var command = Cli.Wrap(jqpath)
+            .WithArguments(args)
+            .WithValidation(CommandResultValidation.None);
+
+        // Add input if provided
+        if (parameters.Json != null)
+            command = command.WithStandardInputPipe(PipeSource.FromString(parameters.Json, Encoding.UTF8));
+
+        var jq = await command.ExecuteBufferedAsync(Encoding.UTF8);
+
+        return new JqResult(jq.ExitCode, jq.StandardOutput.Trim(), jq.StandardError.Trim());
     }
 
     static string HashString(string input)
