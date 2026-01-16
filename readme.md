@@ -21,6 +21,8 @@ Learn more about `jq` at [https://jqlang.github.io/jq/](https://jqlang.github.io
 
 ## Usage
 
+Simple usage for extracting values:
+
 ```csharp
 var name = await JQ.ExecuteAsync(
     """
@@ -29,8 +31,44 @@ var name = await JQ.ExecuteAsync(
         "age": 30
     }
     """,
-    ".name"));
+    ".name");
 ```
+
+### Advanced Usage
+
+For advanced scenarios, use `JqParams` to access all jq command-line options and `JqResult` to inspect exit codes and error output:
+
+```csharp
+var result = await JQ.ExecuteAsync(new JqParams
+{
+    Json = """
+        {
+            "name": "John",
+            "age": 30
+        }
+        """,
+    Query = "{name: .name, extra: $myvar}",
+    Args = new Dictionary<string, string> { { "myvar", "value" } },
+    CompactOutput = true,
+    SortKeys = true
+});
+
+if (result.ExitCode == 0)
+    Console.WriteLine(result.StandardOutput);
+else
+    Console.Error.WriteLine(result.StandardError);
+```
+
+The `JqResult` class provides:
+- `ExitCode` - the process exit code
+- `StandardOutput` - the standard output from jq
+- `StandardError` - the standard error from jq
+- Implicit conversion to `string` (returns `StandardOutput`)
+
+The `JqParams` class supports:
+- **Output options**: `RawOutput`, `CompactOutput`, `MonochromeOutput`, `ColorOutput`, `AsciiOutput`, `SortKeys`, `JoinOutput`, `Tab`, `Indent`
+- **Processing options**: `Slurp`, `NullInput`, `ExitStatus`
+- **Variable passing**: `Args` (--arg), `ArgsJson` (--argjson), `SlurpFiles` (--slurpfile), `RawFiles` (--rawfile)
 
 The `JQ.Path` static property provides the full path to the jq binary that's appropriate 
 for the current OS and architecture so you can execute it directly if needed.
