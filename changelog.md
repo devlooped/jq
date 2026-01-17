@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.8.1.1](https://github.com/devlooped/jq/tree/v1.8.1.1) (2026-01-17)
+
+[Full Changelog](https://github.com/devlooped/jq/compare/v1.8.1...v1.8.1.1)
+
+:sparkles: Implemented enhancements:
+
+- Add support for all JQ parameters and result exit code, standard output and errors [\#88](https://github.com/devlooped/jq/issues/88)
+
+:twisted_rightwards_arrows: Merged:
+
+- Add JqParams and JqResult to expose full jq CLI capabilities and process metadata [\#89](https://github.com/devlooped/jq/pull/89) (@Copilot)
+
 ## [v1.8.1](https://github.com/devlooped/jq/tree/v1.8.1) (2025-08-21)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.8.1-beta...v1.8.1)
