@@ -149,11 +149,11 @@ public class JqParams
     /// Initializes a new instance of the <see cref="JqParams"/> class.
     /// </summary>
     /// <param name="query">The JQ query/filter to execute. Defaults to "." if not specified.</param>
-    public JqParams(string? query = ".")
+    public JqParams(string query = ".")
     {
         if (string.IsNullOrWhiteSpace(query))
             throw new ArgumentException("Query cannot be null or empty.", nameof(query));
-        Query = query!; // null-forgiving operator since we validated above
+        Query = query;
     }
 
     /// <summary>
