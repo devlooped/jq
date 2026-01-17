@@ -61,9 +61,9 @@ public class JqParams
     public string? Json { get; set; }
 
     /// <summary>
-    /// Gets or sets the JQ query/filter to execute.
+    /// Gets the JQ query/filter to execute.
     /// </summary>
-    public string Query { get; set; } = ".";
+    public string Query { get; }
 
     /// <summary>
     /// Gets or sets a value indicating whether to output raw strings, not JSON texts (-r, --raw-output).
@@ -148,17 +148,22 @@ public class JqParams
     /// <summary>
     /// Initializes a new instance of the <see cref="JqParams"/> class.
     /// </summary>
-    public JqParams()
+    /// <param name="query">The JQ query/filter to execute. Defaults to "." if not specified.</param>
+    public JqParams(string? query = ".")
     {
+        if (string.IsNullOrWhiteSpace(query))
+            throw new ArgumentException("Query cannot be null or empty.", nameof(query));
+        Query = query!; // null-forgiving operator since we validated above
     }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="JqParams"/> class with JSON and query.
     /// </summary>
-    public JqParams(string json, string query)
+    /// <param name="json">The JSON input to process.</param>
+    /// <param name="query">The JQ query/filter to execute.</param>
+    public JqParams(string json, string query) : this(query)
     {
         Json = json;
-        Query = query;
     }
 }
 

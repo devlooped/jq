@@ -137,10 +137,9 @@ public class JQTests
             }
             """;
 
-        var result = await JQ.ExecuteAsync(new JqParams
+        var result = await JQ.ExecuteAsync(new JqParams("{name: .name, extra: $extra}")
         {
             Json = json,
-            Query = "{name: .name, extra: $extra}",
             Args = new Dictionary<string, string> { { "extra", "value" } }
         });
 
@@ -161,10 +160,9 @@ public class JQTests
             }
             """;
 
-        var result = await JQ.ExecuteAsync(new JqParams
+        var result = await JQ.ExecuteAsync(new JqParams("{name: .name, count: $count}")
         {
             Json = json,
-            Query = "{name: .name, count: $count}",
             ArgsJson = new Dictionary<string, string> { { "count", "42" } }
         });
 
@@ -186,10 +184,9 @@ public class JQTests
             }
             """;
 
-        var result = await JQ.ExecuteAsync(new JqParams
+        var result = await JQ.ExecuteAsync(new JqParams(".")
         {
             Json = json,
-            Query = ".",
             CompactOutput = true,
             RawOutput = false
         });
@@ -201,9 +198,8 @@ public class JQTests
     [Fact]
     public async Task JqParams_NullInput()
     {
-        var result = await JQ.ExecuteAsync(new JqParams
+        var result = await JQ.ExecuteAsync(new JqParams("{value: 123}")
         {
-            Query = "{value: 123}",
             NullInput = true,
             RawOutput = false
         });
@@ -226,10 +222,9 @@ public class JQTests
             }
             """;
 
-        var result = await JQ.ExecuteAsync(new JqParams
+        var result = await JQ.ExecuteAsync(new JqParams(".")
         {
             Json = json,
-            Query = ".",
             SortKeys = true,
             CompactOutput = true,
             RawOutput = false
