@@ -39,7 +39,7 @@ var name = await JQ.ExecuteAsync(
 For advanced scenarios, use `JqParams` to access all jq command-line options and `JqResult` to inspect exit codes and error output:
 
 ```csharp
-var result = await JQ.ExecuteAsync(new JqParams
+var result = await JQ.ExecuteAsync(new JqParams("{name: .name, extra: $myvar}")
 {
     Json = """
         {
@@ -47,7 +47,6 @@ var result = await JQ.ExecuteAsync(new JqParams
             "age": 30
         }
         """,
-    Query = "{name: .name, extra: $myvar}",
     Args = new Dictionary<string, string> { { "myvar", "value" } },
     CompactOutput = true,
     SortKeys = true
