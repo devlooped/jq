@@ -16,6 +16,7 @@ env:
   Configuration: Release
   PackOnBuild: true
   GeneratePackageOnBuild: true
+  VersionLabel: ${{ github.ref }}
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   JQVERSION: ${{ github.event.inputs.jq || github.event.release.tag_name }}
   
@@ -44,7 +45,7 @@ jobs:
           gh release download "jq-${JQ_VERSION}" --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
 
       - name: 🙏 build
-        run: dotnet build -m:1 -p:version=${GITHUB_REF##*/v} -bl:build.binlog
+        run: dotnet build -m:1 -bl:build.binlog
 
       - name: 🧪 test
         run: dotnet test --no-build 
