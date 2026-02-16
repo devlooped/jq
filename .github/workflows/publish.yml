@@ -32,6 +32,8 @@ jobs:
       - name: ⏬ download
         run: |
           # Strip fourth segment from version if present (e.g., 1.8.1.1 -> 1.8.1)
+          # This handles C#-only releases that use a fourth revision number
+          # Versions with 2 or 3 segments pass through unchanged
           JQ_VERSION="${JQVERSION##*/}"
           JQ_VERSION="${JQ_VERSION#v}"
           JQ_VERSION=$(echo "$JQ_VERSION" | sed -E 's/^([0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+$/\1/')
