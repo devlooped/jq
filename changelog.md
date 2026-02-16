@@ -8,8 +8,13 @@
 
 - Add support for all JQ parameters and result exit code, standard output and errors [\#88](https://github.com/devlooped/jq/issues/88)
 
+:bug: Fixed bugs:
+
+- If the release tag has four segments, ja download fails [\#92](https://github.com/devlooped/jq/issues/92)
+
 :twisted_rightwards_arrows: Merged:
 
+- Fix publish workflow: use VersionLabel for version resolution [\#94](https://github.com/devlooped/jq/pull/94) (@Copilot)
 - Strip fourth version segment when downloading JQ binaries [\#93](https://github.com/devlooped/jq/pull/93) (@Copilot)
 - Add JqParams and JqResult to expose full jq CLI capabilities and process metadata [\#89](https://github.com/devlooped/jq/pull/89) (@Copilot)
 
