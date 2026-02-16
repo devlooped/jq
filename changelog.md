@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.8.1.1](https://github.com/devlooped/jq/tree/v1.8.1.1) (2026-01-17)
+## [v1.8.1.1](https://github.com/devlooped/jq/tree/v1.8.1.1) (2026-02-16)
 
 [Full Changelog](https://github.com/devlooped/jq/compare/v1.8.1...v1.8.1.1)
 
@@ -10,6 +10,7 @@
 
 :twisted_rightwards_arrows: Merged:
 
+- Strip fourth version segment when downloading JQ binaries [\#93](https://github.com/devlooped/jq/pull/93) (@Copilot)
 - Add JqParams and JqResult to expose full jq CLI capabilities and process metadata [\#89](https://github.com/devlooped/jq/pull/89) (@Copilot)
 
 ## [v1.8.1](https://github.com/devlooped/jq/tree/v1.8.1) (2025-08-21)
