@@ -31,11 +31,15 @@ jobs:
 
       - name: ⏬ download
         run: |
-          echo "Downloading jq release tag jq-${JQVERSION##*/v}"
-          gh release download "jq-${JQVERSION##*/v}" --dir src/JQ/tools --clobber -p jq-linux-a*64 --repo jqlang/jq
-          gh release download "jq-${JQVERSION##*/v}" --dir src/JQ/tools --clobber -p jq-linux-i386 --repo jqlang/jq
-          gh release download "jq-${JQVERSION##*/v}" --dir src/JQ/tools --clobber -p jq-macos* --repo jqlang/jq
-          gh release download "jq-${JQVERSION##*/v}" --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
+          # Strip fourth segment from version if present (e.g., 1.8.1.1 -> 1.8.1)
+          JQ_VERSION="${JQVERSION##*/}"
+          JQ_VERSION="${JQ_VERSION#v}"
+          JQ_VERSION=$(echo "$JQ_VERSION" | sed -E 's/^([0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+$/\1/')
+          echo "Downloading jq release tag jq-${JQ_VERSION}"
+          gh release download "jq-${JQ_VERSION}" --dir src/JQ/tools --clobber -p jq-linux-a*64 --repo jqlang/jq
+          gh release download "jq-${JQ_VERSION}" --dir src/JQ/tools --clobber -p jq-linux-i386 --repo jqlang/jq
+          gh release download "jq-${JQ_VERSION}" --dir src/JQ/tools --clobber -p jq-macos* --repo jqlang/jq
+          gh release download "jq-${JQ_VERSION}" --dir src/JQ/tools --clobber -p jq-windows-* --repo jqlang/jq
 
       - name: 🙏 build
         run: dotnet build -m:1 -p:version=${GITHUB_REF##*/v} -bl:build.binlog
